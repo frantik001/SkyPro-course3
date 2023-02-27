@@ -1,0 +1,100 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.form__create_pincode {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.input__create_pincode {
+    border-radius: 20px;
+    border-color: pink;
+    height: 30px;
+    width: 200px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 20px;
+}
+
+.button__save_pincode {
+    border-radius: 20px;
+    height: 30px;
+    width: 100px;
+    background-color: pink;
+    border: none;
+    transition: 0.3s;
+}
+
+.button__save_pincode:hover {
+    background-color: #ce99a2;
+}
+
+.error {
+    color: darkred;
+}
+
+.form__write_pincode {
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.input__write_pincode {
+    border-radius: 10px;
+    border-color: pink;
+    height: 50px;
+    width: 50px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 25px;
+}
+
+.button__check_pincode {
+    border-radius: 20px;
+    height: 30px;
+    width: 100px;
+    background-color: pink;
+    border: none;
+    transition: 0.3s;
+}
+
+.button__check_pincode:hover {
+    background-color: #ce99a2;
+}
+
+.delete__button {
+    border-radius: 20px;
+    height: 30px;
+    width: 120px;
+    background-color: white;
+    transition: 0.3s;
+}
+
+.delete__button:hover {
+    background-color: lightgray;
+}
+.delete__button-hidden {
+    display: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.form__create_pincode-hidden {
+    display: none;
+}
+
+.form__write_pincode-hidden {
+    display: none;
+}

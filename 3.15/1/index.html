@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form class="form" action="" method="get">
+        <input class="form__input_login" type="text" placeholder="Логин">
+        <input class="form__input_password" type="text" placeholder="Пароль">
+        <button class="form__button">Отправить</button>
+    </form>
+    <script src="../request.js"></script>
+    <script>
+        const form = document.querySelector('.form');
+        const formInputLogin = form.querySelector('.form__input_login');
+        const formInputPassword = form.querySelector('.form__input_password');
+        const formButton = form.querySelector('.form__button');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            request({
+                url: 'api.json',
+                onSuccess: (data) => {
+                    if (data.status === 'ok') {
+                        alert('Пароль верный')
+                    } else {
+                        alert('Пароль неверный')
+                    }
+                },
+                onError: (data) => {
+                    alert('Страница не найдена')
+                }
+            });
+        })
+    </script>
+</body>
+
+</html>

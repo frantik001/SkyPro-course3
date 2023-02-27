@@ -1,0 +1,119 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.suggest {
+    border-radius: 10px;
+    height: 30px;
+    box-sizing: border-box;
+    width: 200px;
+    border: 1px solid #1797cc;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-family: 'Montserrat', sans-serif;
+
+    &__suggest-popup {
+        position: absolute;
+        padding: 4px 2px;
+        border: 1px solid #15ca2a;
+        border-radius: 10px;
+        background: #fff;
+    }
+
+    &__suggest-popup_hidden {
+        display: none;
+    }
+
+    &__suggest-popup-item {
+        cursor: pointer;
+        padding: 2px 2px;
+        margin: 0 -2px;
+    }
+
+    &__suggest-popup-item:hover {
+        background-color: lightgray;
+        border-radius: 10px;
+    }
+}
+
+.suggest:focus {
+    border-color: #15ca2a;
+    outline: 0;
+}
+
+.searchTown__button {
+    width: 140px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background-color: #1797cc;
+    font-family: 'Montserrat', sans-serif;
+    transition: 0.3s;
+}
+
+.searchTown__button:hover {
+    background-color: #1381b1;
+}
+
+.weather {
+    background: #15ca2a;
+    border-radius: 10px;
+    width: 350px;
+    height: 100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 15px;
+    color: white;
+    padding: 8px 12px;
+    box-sizing: border-box;
+
+    &__left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    &__right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &_type {
+            text-align: center;
+        }
+    }
+}
+
+.autoSearch {
+    width: 140px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background-color: #1797cc;
+    font-family: 'Montserrat', sans-serif;
+    transition: 0.3s;
+}
+
+.autoSearch:hover {
+    background-color: #1381b1;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');

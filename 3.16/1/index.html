@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form class="form">
+        <input class="form__input">
+        <div class="form__meaning"></div>
+        <button class="form__button">Узнать слово</button>
+    </form>
+
+    <script src="src/request.js"></script>
+    <script>
+        const BASE_API_URL = 'https://dictionary.yandex.net/api/v1/dicservice.json/lookup';
+        const API_KEY = 'dict.1.1.20221201T133139Z.ad04f27a7044bd2c.82f3623080c15824adf30d705ed5bbac7f2e3f9d';
+        const form = document.querySelector('.form');
+        const formInput = form.querySelector('.form__input');
+        const formMeaning = form.querySelector('.form__meaning');
+        const formButton = form.querySelector('.form__button');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            request({
+                method: 'POST',
+                url: BASE_API_URL,
+                requestType: 'json',
+                params: {
+                    key: API_KEY,
+                    lang: 'ru-ru',
+                    text: formInput.value,
+                },
+
+                onSuccess: (data) => {
+                    if (data.def[0]) {
+                        const meaning = data.def[0].tr.map(t => t.text).join(', ');
+                        formMeaning.textContent = meaning;
+                    } else {
+                        formMeaning.textContent = 'Такого слова не существует';
+                    }
+
+                },
+                onError: (data) => {
+                    formMeaning.textContent = 'Такого слова не существует';
+                }
+
+            })
+        })
+    </script>
+</body>
+
+</html>

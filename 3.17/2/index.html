@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="node_modules\pinlogin\dist\pinlogin.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <form class="form__create_pincode" action="#">
+        <h1 class="header">Придумайте пин-код</h1>
+        <div class="registerpin" id="registerpin"></div>
+        <p>еще раз</p>
+        <div class="registerpinretype" id="registerpinretype"></div>
+    </form>
+    <form class="form__write_pincode" action="#">
+        <h1 class="header">Введите пин-код</h1>
+        <div class="pincode__check"></div>
+    </form>
+    <div class="delete__code">
+        <button class="delete__button delete__button-hidden">Сбросить пин-код</button>
+    </div>
+    <script src="node_modules/pinlogin/dist/pinlogin.pkgd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

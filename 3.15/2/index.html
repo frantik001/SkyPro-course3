@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="main">
+        <div class="searchTown">
+            <input class="suggest" type="text">
+            <button class="searchTown__button">Узнать погоду</button>
+        </div>
+        <div class="weather">
+            <div class="weather__left">
+                <h3 class="weather__left_town"></h3>
+                <p class="weather__left_temp"></p>
+            </div>
+            <div class="weather__right">
+                <img class="weather__right_icon">
+                <p class="weather__right_type"></p>
+            </div>
+        </div>
+        <div class="block__autoSearch">
+            <button class="autoSearch">Определить город</button>
+        </div>
+    </div>
+
+    <script src="src/data/cities.js"></script>
+    <script src="src/suggest.js"></script>
+    <script src="src/templateEngine.js"></script>
+    <script src="src/request.js"></script>
+    <script>
+        const APP_ID = 'c48360c5fd6e36b422d9c6a425bbce0e';
+        const API_BASE_URL = 'https://api.openweathermap.org/data/2.5';
+        const API_BASE_ICON_URL = 'https://openweathermap.org/img/wn/'
+        const suggestInput = document.querySelector('.suggest');
+        const searchTownButton = document.querySelector('.searchTown__button')
+        const weather = document.querySelector('.weather');
+        const weatherTown = document.querySelector('.weather__left_town');
+        const weatherTemp = document.querySelector('.weather__left_temp');
+        const weatherIcon = document.querySelector('.weather__right_icon');
+        const weatherType = document.querySelector('.weather__right_type');
+        const autoSearch = document.querySelector('.autoSearch')
+
+        document.addEventListener('DOMContentLoaded', showWeather)
+
+        function showWeather() {
+            navigator.geolocation.getCurrentPosition((data) => {
+                const { latitude, longitude, } = data.coords;
+                const metric = 'metric';
+                const ru = 'ru';
+                request({
+                    url: `${API_BASE_URL}/weather`,
+                    params: {
+                        lat: latitude,
+                        lon: longitude,
+                        appid: APP_ID,
+                        units: metric,
+                        lang: ru,
+                    },
+                    onSuccess: (data) => {
+                        weatherTown.textContent = data.name;
+                        weatherTemp.textContent = data.main.temp_min + '°С';
+                        weatherIcon.src = API_BASE_ICON_URL + data.weather[0].icon + '.png'
+                        weatherType.textContent = data.weather[0].description;
+                    }
+                });
+            });
+        }
+
+        const suggest = new Suggest(suggestInput, {
+            data: cities.map(city => city.city),
+        });
+
+        searchTownButton.addEventListener('click', function (event) {
+            const city = suggestInput.value;
+            const metric = 'metric';
+            const ru = 'ru';
+            request({
+                url: `${API_BASE_URL}/weather`,
+                params: {
+                    q: city,
+                    appid: APP_ID,
+                    units: metric,
+                    lang: ru,
+                },
+                onSuccess: (data) => {
+                    weatherTown.textContent = data.name;
+                    weatherTemp.textContent = data.main.temp_min + '°С';
+                    weatherIcon.src = API_BASE_ICON_URL + data.weather[0].icon + '.png'
+                    weatherType.textContent = data.weather[0].description;
+                }
+
+            });
+        });
+
+        autoSearch.addEventListener('click', showWeather);
+
+    </script>
+</body>
+
+</html>

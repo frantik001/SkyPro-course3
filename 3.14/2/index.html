@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 class="title"></h1>
+    <h2 class="subtitle"></h2>
+    <p class="body"></p>
+    <a class="link__about" href="#about">about.html</a>
+    <a class="link__contacts" href="#contacts">contacts.html</a>
+    <script src="request.js"></script>
+    <script>
+        const title = document.querySelector('.title');
+        const subtitle = document.querySelector('.subtitle');
+        const body = document.querySelector('.body');
+        const link__about = document.querySelector('.link__about')
+        const link__contacts = document.querySelector('.link__contacts')
+        addEventListener('DOMContentLoaded', (event) => {
+            request({
+                url: 'index.json',
+                onSuccess: (data) => {
+                    title.textContent = data.title
+                    subtitle.textContent = data.subtitle
+                    body.textContent = data.body
+                }
+            })
+            link__about.addEventListener('click', function (event) {
+                event.preventDefault();
+                request({
+                    url: 'about.json',
+                    onSuccess: (data) => {
+                        title.textContent = data.title
+                        subtitle.textContent = data.subtitle
+                        body.textContent = data.body
+                    }
+                })
+
+            })
+            link__contacts.addEventListener('click', function (event) {
+                event.preventDefault()
+                request({
+                    url: 'contacts.json',
+                    onSuccess: (data) => {
+                        title.textContent = data.title
+                        subtitle.textContent = data.subtitle
+                        body.textContent = data.body
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>

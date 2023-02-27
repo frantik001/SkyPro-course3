@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 class="title"></h1>
+    <h2 class="subtitle"></h2>
+    <p class="body"></p>
+    <script src="request.js"></script>
+    <script>
+        const title = document.querySelector('.title');
+        const subtitle = document.querySelector('.subtitle');
+        const body = document.querySelector('.body');
+        addEventListener('DOMContentLoaded', (event) => {
+            request({
+                url: 'index.json',
+                onSuccess: (data) => {
+                    title.textContent = data.title
+                    subtitle.textContent = data.subtitle
+                    body.textContent = data.body
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
